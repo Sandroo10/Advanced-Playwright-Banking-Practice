@@ -7,7 +7,7 @@ test.describe("Authentication | BANK-AUTH", () => {
     await new LoginPage(page).open();
   });
 
-  test("BANK-AUTH-01: standard user can log in", async ({ page }) => {
+  test("BANK-AUTH-01: standard user can log in @smoke", async ({ page }) => {
     const login = new LoginPage(page);
     await login.login(users.standard.username, users.standard.password);
     await expect(page.getByText(/Welcome back,? Apex User/i)).toBeVisible();
