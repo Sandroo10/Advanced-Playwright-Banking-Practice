@@ -38,4 +38,13 @@ test.describe("Authentication | BANK-AUTH", () => {
     await expect(login.passwordResetModal.simulatedOtpMessage).toBeVisible();
     await expect(login.passwordResetModal.simulatedOtpCode).toBeVisible();
   });
+
+  test("BANK-AUTH-05: Valid 2FA OTP login", async ({ page }) => {
+    const login = new LoginPage(page);
+    await login.login(users.twoFactor.username, users.twoFactor.password);
+    await expect(login.loginForm.otpInput).toBeVisible();
+    await expect(login.loginForm.otpCode).toBeVisible();
+    await login.loginForm.submitOtp();
+    await expect(page.getByText(/Welcome back,? Apex User/i)).toBeVisible();
+  });
 });

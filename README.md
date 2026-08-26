@@ -38,7 +38,7 @@ utils/      Small helpers and test-data builders
 | BANK-AUTH-02 | Authentication | Invalid password | P3 | ✅ Automated and passing |
 | BANK-AUTH-03 | Authentication | Unregistered username | P3 | ✅ Automated and passing |
 | BANK-AUTH-04 | Authentication | Password-reset OTP | P2 | ✅ Automated and passing |
-| BANK-AUTH-05 | Authentication | Valid 2FA OTP login | P1 | ⬜ Not started |
+| BANK-AUTH-05 | Authentication | Valid 2FA OTP login | P1 | ✅ Automated and passing|
 | BANK-DASH-01 | Dashboard | Account balances | P3 | ✅ Automated and passing |
 | BANK-DASH-02 | Dashboard | Recent transactions | P3 | ✅ Automated and passing |
 | BANK-DASH-03 | Dashboard | Net-worth visibility | P3 | ✅ Automated and passing |
