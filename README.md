@@ -40,8 +40,8 @@ utils/      Small helpers and test-data builders
 | BANK-AUTH-04 | Authentication | Password-reset OTP | P2 | ✅ Automated and passing |
 | BANK-AUTH-05 | Authentication | Valid 2FA OTP login | P1 | ⬜ Not started |
 | BANK-DASH-01 | Dashboard | Account balances | P3 | ✅ Automated and passing |
-| BANK-DASH-02 | Dashboard | Recent transactions | P3 | ⬜ Not started |
-| BANK-DASH-03 | Dashboard | Net-worth visibility | P3 | ⬜ Not started |
+| BANK-DASH-02 | Dashboard | Recent transactions | P3 | ✅ Automated and passing |
+| BANK-DASH-03 | Dashboard | Net-worth visibility | P3 | ✅ Automated and passing |
 | BANK-TRSF-01 | Fund Transfer | Add beneficiary | P2 | ⬜ Not started |
 | BANK-TRSF-02 | Fund Transfer | Duplicate beneficiary blocked | P2 | ⬜ Not started |
 | BANK-TRSF-03 | Fund Transfer | Edit beneficiary | P2 | ⬜ Not started |
