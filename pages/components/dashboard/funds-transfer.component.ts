@@ -1,5 +1,78 @@
-import type { Page } from "@playwright/test";
+import type { Locator, Page } from "@playwright/test";
+import type { BeneficiaryData } from "../../../data/builders/beneficiary.builder";
 
 export class FundsTransferComponent {
-  constructor(readonly page: Page) {}
+  readonly transfersTab: Locator;
+  readonly addBeneficiaryButton: Locator;
+  readonly addBeneficiaryHeading: Locator;
+  readonly beneficiaryNameInput: Locator;
+  readonly beneficiaryAccountInput: Locator;
+  readonly beneficiaryBankSelect: Locator;
+  readonly saveBeneficiaryButton: Locator;
+  readonly cancelBeneficiaryButton: Locator;
+  readonly beneficiaryItems: Locator;
+  readonly duplicateBeneficiaryError: Locator;
+  readonly deletionDialogHeading: Locator;
+  readonly confirmDeleteButton: Locator;
+
+  constructor(page: Page) {
+    this.transfersTab = page.locator("#tab-transfers");
+    this.addBeneficiaryButton = page.locator("#add-beneficiary");
+    this.addBeneficiaryHeading = page.getByRole("heading", {
+      name: "Add New Beneficiary",
+    });
+    this.beneficiaryNameInput = page.locator("#bene-name");
+    this.beneficiaryAccountInput = page.locator("#bene-account");
+    this.beneficiaryBankSelect = page.locator("#bene-bank");
+    this.saveBeneficiaryButton = page.locator("#save-bene");
+    this.cancelBeneficiaryButton = page.getByRole("button", {
+      name: "Cancel",
+      exact: true,
+    });
+    this.beneficiaryItems = page.locator(".beneficiary-item");
+    this.duplicateBeneficiaryError = page.locator(".bene-error-alert");
+    this.deletionDialogHeading = page.getByRole("heading", {
+      name: "Confirm Beneficiary Deletion",
+    });
+    this.confirmDeleteButton = page.locator("button.confirm-btn");
+  }
+
+  async open(): Promise<void> {
+    await this.transfersTab.click();
+  }
+
+  async openAddBeneficiaryForm(): Promise<void> {
+    await this.addBeneficiaryButton.click();
+  }
+
+  async fillBeneficiary(data: BeneficiaryData): Promise<void> {
+    await this.beneficiaryNameInput.fill(data.name);
+    await this.beneficiaryAccountInput.fill(data.accountNumber);
+    await this.beneficiaryBankSelect.selectOption(data.bank);
+  }
+
+  async saveBeneficiary(): Promise<void> {
+    await this.saveBeneficiaryButton.click();
+  }
+
+  async cancelAddBeneficiaryIfOpen(): Promise<void> {
+    for (const button of await this.cancelBeneficiaryButton.all()) {
+      if (await button.isVisible()) {
+        await button.click();
+        return;
+      }
+    }
+  }
+
+  async deleteBeneficiary(name: string): Promise<void> {
+    await this.beneficiaryByName(name).locator("button.delete-bene").click();
+  }
+
+  async confirmBeneficiaryDeletion(): Promise<void> {
+    await this.confirmDeleteButton.click();
+  }
+
+  beneficiaryByName(name: string): Locator {
+    return this.beneficiaryItems.filter({ hasText: name });
+  }
 }

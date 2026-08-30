@@ -15,11 +15,11 @@ Useful commands: `npm run test:ui`, `npm run test:headed`, `npm run test:auth`, 
 ## Structure
 
 ```text
-data/       Stable demo users and shared data
+data/       Demo users and business-data builders
 fixtures/   Reusable setup, including an authenticated page
 pages/      Page Object Models: locators and actions only
 tests/      Behaviour-focused specs grouped by product area
-utils/      Small helpers and test-data builders
+utils/      Small non-business helper functions
 ```
 
 ## Reliability and build order
@@ -32,39 +32,39 @@ utils/      Small helpers and test-data builders
 
 ## Supplied test-case inventory
 
-| ID | Module | Scenario | Priority | Status |
-| --- | --- | --- | --- | --- |
-| BANK-AUTH-01 | Authentication | Valid login | P3 | ✅ Automated and passing |
-| BANK-AUTH-02 | Authentication | Invalid password | P3 | ✅ Automated and passing |
-| BANK-AUTH-03 | Authentication | Unregistered username | P3 | ✅ Automated and passing |
-| BANK-AUTH-04 | Authentication | Password-reset OTP | P2 | ✅ Automated and passing |
-| BANK-AUTH-05 | Authentication | Valid 2FA OTP login | P1 | ✅ Automated and passing|
-| BANK-DASH-01 | Dashboard | Account balances | P3 | ✅ Automated and passing |
-| BANK-DASH-02 | Dashboard | Recent transactions | P3 | ✅ Automated and passing |
-| BANK-DASH-03 | Dashboard | Net-worth visibility | P3 | ✅ Automated and passing |
-| BANK-TRSF-01 | Fund Transfer | Add beneficiary | P2 | ⬜ Not started |
-| BANK-TRSF-02 | Fund Transfer | Duplicate beneficiary blocked | P2 | ⬜ Not started |
-| BANK-TRSF-03 | Fund Transfer | Edit beneficiary | P2 | ⬜ Not started |
-| BANK-TRSF-04 | Fund Transfer | Delete beneficiary | P3 | ⬜ Not started |
-| BANK-TRSF-05 | Fund Transfer | Internal transfer | P2 | ⬜ Not started |
-| BANK-TRSF-06 | Fund Transfer | Insufficient funds | P2 | ⬜ Not started |
-| BANK-TRSF-07 | Fund Transfer | External wire with SMS OTP | P1 | ⬜ Not started |
-| BANK-TRSF-08 | Fund Transfer | Negative amount | P3 | ⬜ Not started |
-| BANK-TRSF-09 | Fund Transfer | Zero amount | P3 | ⬜ Not started |
-| BANK-LOAN-01 | Loan Center | Personal loan EMI | P3 | ⬜ Not started |
-| BANK-LOAN-02 | Loan Center | Home loan EMI | P3 | ⬜ Not started |
-| BANK-LOAN-03 | Loan Center | Successful application | P2 | ⬜ Not started |
-| BANK-LOAN-04 | Loan Center | Insufficient-income rejection | P2 | ⬜ Not started |
-| BANK-CARD-01 | Cards Control | Freeze card | P3 | ⬜ Not started |
-| BANK-CARD-02 | Cards Control | Purchase limit | P2 | ⬜ Not started |
-| BANK-CARD-03 | Cards Control | International usage | P3 | ⬜ Not started |
-| BANK-CARD-04 | Cards Control | Replace damaged card | P2 | ⬜ Not started |
-| BANK-SUPP-01 | Support Hub | Ticket with attachment | P2 | ⬜ Not started |
-| BANK-SUPP-02 | Support Hub | Ticket filtering | P3 | ⬜ Not started |
-| BANK-SUPP-03 | Support Hub | Empty-ticket validation | P3 | ⬜ Not started |
-| BANK-SETT-01 | Settings | Update phone | P3 | ⬜ Not started |
-| BANK-SETT-02 | Settings | Change password | P2 | ⬜ Not started |
-| BANK-SETT-03 | Settings | Login activity | P3 | ⬜ Not started |
+| ID           | Module         | Scenario                      | Priority | Status                   |
+| ------------ | -------------- | ----------------------------- | -------- | ------------------------ |
+| BANK-AUTH-01 | Authentication | Valid login                   | P3       | ✅ Automated and passing |
+| BANK-AUTH-02 | Authentication | Invalid password              | P3       | ✅ Automated and passing |
+| BANK-AUTH-03 | Authentication | Unregistered username         | P3       | ✅ Automated and passing |
+| BANK-AUTH-04 | Authentication | Password-reset OTP            | P2       | ✅ Automated and passing |
+| BANK-AUTH-05 | Authentication | Valid 2FA OTP login           | P1       | ✅ Automated and passing |
+| BANK-DASH-01 | Dashboard      | Account balances              | P3       | ✅ Automated and passing |
+| BANK-DASH-02 | Dashboard      | Recent transactions           | P3       | ✅ Automated and passing |
+| BANK-DASH-03 | Dashboard      | Net-worth visibility          | P3       | ✅ Automated and passing |
+| BANK-TRSF-01 | Fund Transfer  | Add beneficiary               | P2       | ✅ Automated and passing |
+| BANK-TRSF-02 | Fund Transfer  | Duplicate beneficiary blocked | P2       | ✅ Automated and passing |
+| BANK-TRSF-03 | Fund Transfer  | Edit beneficiary              | P2       | ⬜ Not started           |
+| BANK-TRSF-04 | Fund Transfer  | Delete beneficiary            | P3       | ⬜ Not started           |
+| BANK-TRSF-05 | Fund Transfer  | Internal transfer             | P2       | ⬜ Not started           |
+| BANK-TRSF-06 | Fund Transfer  | Insufficient funds            | P2       | ⬜ Not started           |
+| BANK-TRSF-07 | Fund Transfer  | External wire with SMS OTP    | P1       | ⬜ Not started           |
+| BANK-TRSF-08 | Fund Transfer  | Negative amount               | P3       | ⬜ Not started           |
+| BANK-TRSF-09 | Fund Transfer  | Zero amount                   | P3       | ⬜ Not started           |
+| BANK-LOAN-01 | Loan Center    | Personal loan EMI             | P3       | ⬜ Not started           |
+| BANK-LOAN-02 | Loan Center    | Home loan EMI                 | P3       | ⬜ Not started           |
+| BANK-LOAN-03 | Loan Center    | Successful application        | P2       | ⬜ Not started           |
+| BANK-LOAN-04 | Loan Center    | Insufficient-income rejection | P2       | ⬜ Not started           |
+| BANK-CARD-01 | Cards Control  | Freeze card                   | P3       | ⬜ Not started           |
+| BANK-CARD-02 | Cards Control  | Purchase limit                | P2       | ⬜ Not started           |
+| BANK-CARD-03 | Cards Control  | International usage           | P3       | ⬜ Not started           |
+| BANK-CARD-04 | Cards Control  | Replace damaged card          | P2       | ⬜ Not started           |
+| BANK-SUPP-01 | Support Hub    | Ticket with attachment        | P2       | ⬜ Not started           |
+| BANK-SUPP-02 | Support Hub    | Ticket filtering              | P3       | ⬜ Not started           |
+| BANK-SUPP-03 | Support Hub    | Empty-ticket validation       | P3       | ⬜ Not started           |
+| BANK-SETT-01 | Settings       | Update phone                  | P3       | ⬜ Not started           |
+| BANK-SETT-02 | Settings       | Change password               | P2       | ⬜ Not started           |
+| BANK-SETT-03 | Settings       | Login activity                | P3       | ⬜ Not started           |
 
 ## Technology stack
 
