@@ -1,11 +1,11 @@
 import type { Page } from "@playwright/test";
 import { BasePage } from "./base.page";
-import { AccountsSummaryComponent } from "./components/dashboard/accounts-summary.component";
-import { CardsControlsComponent } from "./components/dashboard/cards-controls.component";
-import { CustomerSupportComponent } from "./components/dashboard/customer-support.component";
-import { FundsTransferComponent } from "./components/dashboard/funds-transfer.component";
-import { LoansCenterComponent } from "./components/dashboard/loans-center.component";
-import { PreferencesComponent } from "./components/dashboard/preferences.component";
+import { AccountsSummaryComponent } from "./components/dashboard/account-summary/accounts-summary.component";
+import { CardsControlsComponent } from "./components/dashboard/account-summary/cards-controls.component";
+import { CustomerSupportComponent } from "./components/dashboard/account-summary/customer-support.component";
+import { FundsTransferComponent } from "./components/dashboard/funds-transfer/beneficiary";
+import { LoansCenterComponent } from "./components/dashboard/account-summary/loans-center.component";
+import { PreferencesComponent } from "./components/dashboard/account-summary/preferences.component";
 
 export class DashboardPage extends BasePage {
   readonly accountsSummary: AccountsSummaryComponent;

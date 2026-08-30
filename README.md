@@ -44,7 +44,7 @@ utils/      Small non-business helper functions
 | BANK-DASH-03 | Dashboard      | Net-worth visibility          | P3       | ✅ Automated and passing |
 | BANK-TRSF-01 | Fund Transfer  | Add beneficiary               | P2       | ✅ Automated and passing |
 | BANK-TRSF-02 | Fund Transfer  | Duplicate beneficiary blocked | P2       | ✅ Automated and passing |
-| BANK-TRSF-03 | Fund Transfer  | Edit beneficiary              | P2       | ⬜ Not started           |
+| BANK-TRSF-03 | Fund Transfer  | Edit beneficiary              | P2       | ✅ Automated and passing |
 | BANK-TRSF-04 | Fund Transfer  | Delete beneficiary            | P3       | ⬜ Not started           |
 | BANK-TRSF-05 | Fund Transfer  | Internal transfer             | P2       | ⬜ Not started           |
 | BANK-TRSF-06 | Fund Transfer  | Insufficient funds            | P2       | ⬜ Not started           |

@@ -1,5 +1,5 @@
 import type { Locator, Page } from "@playwright/test";
-import type { BeneficiaryData } from "../../../data/builders/beneficiary.builder";
+import type { BeneficiaryData } from "../../../../data/builders/beneficiary.builder";
 
 export class FundsTransferComponent {
   readonly transfersTab: Locator;
@@ -12,6 +12,9 @@ export class FundsTransferComponent {
   readonly cancelBeneficiaryButton: Locator;
   readonly beneficiaryItems: Locator;
   readonly duplicateBeneficiaryError: Locator;
+  readonly editBeneficiaryHeading: Locator;
+  readonly editBeneficiaryNicknameInput: Locator;
+  readonly saveBeneficiaryChangesButton: Locator;
   readonly deletionDialogHeading: Locator;
   readonly confirmDeleteButton: Locator;
 
@@ -31,6 +34,13 @@ export class FundsTransferComponent {
     });
     this.beneficiaryItems = page.locator(".beneficiary-item");
     this.duplicateBeneficiaryError = page.locator(".bene-error-alert");
+    this.editBeneficiaryHeading = page.getByRole("heading", {
+      name: "Edit Beneficiary Details",
+    });
+    this.editBeneficiaryNicknameInput = page.locator("#edit-bene-nickname");
+    this.saveBeneficiaryChangesButton = page.locator(
+      "#save-bene-changes",
+    );
     this.deletionDialogHeading = page.getByRole("heading", {
       name: "Confirm Beneficiary Deletion",
     });
@@ -55,7 +65,28 @@ export class FundsTransferComponent {
     await this.saveBeneficiaryButton.click();
   }
 
+  async editBeneficiary(name: string): Promise<void> {
+    await this.beneficiaryByName(name).locator("button.edit-bene").click();
+  }
+
+  async fillEditedBeneficiaryNickname(nickname: string): Promise<void> {
+    await this.editBeneficiaryNicknameInput.fill(nickname);
+  }
+
+  async saveBeneficiaryChanges(): Promise<void> {
+    await this.saveBeneficiaryChangesButton.click();
+  }
+
   async cancelAddBeneficiaryIfOpen(): Promise<void> {
+    for (const button of await this.cancelBeneficiaryButton.all()) {
+      if (await button.isVisible()) {
+        await button.click();
+        return;
+      }
+    }
+  }
+
+  async cancelEditBeneficiaryIfOpen(): Promise<void> {
     for (const button of await this.cancelBeneficiaryButton.all()) {
       if (await button.isVisible()) {
         await button.click();
