@@ -46,7 +46,7 @@ utils/      Small non-business helper functions
 | BANK-TRSF-02 | Fund Transfer  | Duplicate beneficiary blocked | P2       | ✅ Automated and passing |
 | BANK-TRSF-03 | Fund Transfer  | Edit beneficiary              | P2       | ✅ Automated and passing |
 | BANK-TRSF-04 | Fund Transfer  | Delete beneficiary            | P3       | ✅ Automated and passing |
-| BANK-TRSF-05 | Fund Transfer  | Internal transfer             | P2       | ⬜ Not started           |
+| BANK-TRSF-05 | Fund Transfer  | Internal transfer             | P2       | ✅ Automated and passing |
 | BANK-TRSF-06 | Fund Transfer  | Insufficient funds            | P2       | ⬜ Not started           |
 | BANK-TRSF-07 | Fund Transfer  | External wire with SMS OTP    | P1       | ⬜ Not started           |
 | BANK-TRSF-08 | Fund Transfer  | Negative amount               | P3       | ⬜ Not started           |

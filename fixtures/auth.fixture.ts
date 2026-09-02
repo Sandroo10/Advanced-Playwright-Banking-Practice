@@ -1,4 +1,4 @@
-import { test as base, expect } from "@playwright/test";
+import { expect, test as base } from "@playwright/test";
 import { users } from "../data/users";
 import { DashboardPage } from "../pages/dashboard.page";
 import { LoginPage } from "../pages/login.page";
@@ -9,6 +9,8 @@ export const test = base.extend<Fixtures>({
     const login = new LoginPage(page);
     await login.open();
     await login.login(users.standard.username, users.standard.password);
-    await use(new DashboardPage(page));
+    const dashboard = new DashboardPage(page);
+    await expect(dashboard.accountsSummary.welcomeBanner).toBeVisible();
+    await use(dashboard);
   },
 });

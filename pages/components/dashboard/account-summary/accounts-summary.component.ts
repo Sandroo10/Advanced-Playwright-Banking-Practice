@@ -2,6 +2,7 @@ import type { Locator, Page } from "@playwright/test";
 
 export class AccountsSummaryComponent {
   readonly welcomeBanner: Locator;
+  readonly dashboardTab: Locator;
   readonly checkingBalance: Locator;
   readonly savingsBalance: Locator;
   readonly recentTransactionsHeading: Locator;
@@ -14,8 +15,13 @@ export class AccountsSummaryComponent {
 
   constructor(page: Page) {
     this.welcomeBanner = page.getByText(/Welcome back,? Apex User/i);
-    this.checkingBalance = page.getByText("$4,250.00", { exact: true });
-    this.savingsBalance = page.getByText("$18,400.00", { exact: true });
+    this.dashboardTab = page.locator("#tab-dashboard");
+    this.checkingBalance = page
+      .locator('[data-account="checking"]')
+      .locator(".balance");
+    this.savingsBalance = page
+      .locator('[data-account="savings"]')
+      .locator(".balance");
     this.recentTransactionsHeading = page.getByRole("heading", {
       name: "Recent Transactions",
     });
@@ -34,5 +40,9 @@ export class AccountsSummaryComponent {
 
   transactionCells(rowIndex: number): Locator {
     return this.transactionRows.nth(rowIndex).locator("td");
+  }
+
+  async openDashboard(): Promise<void> {
+    await this.dashboardTab.click();
   }
 }

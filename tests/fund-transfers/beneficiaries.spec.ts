@@ -58,6 +58,7 @@ test.describe("Fund Transfer | BANK-TRSF", () => {
       await expect(createdBeneficiary).toHaveCount(1);
     } finally {
       if ((await createdBeneficiary.count()) > 0) {
+        await transfer.cancelAddBeneficiaryIfOpen();
         await transfer.deleteBeneficiary(beneficiary.name);
         await expect(transfer.deletionDialogHeading).toBeVisible();
         await transfer.confirmBeneficiaryDeletion();

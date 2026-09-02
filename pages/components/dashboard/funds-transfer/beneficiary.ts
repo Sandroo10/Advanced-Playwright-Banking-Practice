@@ -3,6 +3,12 @@ import type { BeneficiaryData } from "../../../../data/builders/beneficiary.buil
 
 export class FundsTransferComponent {
   readonly transfersTab: Locator;
+  readonly transferTypeSelect: Locator;
+  readonly fromAccountSelect: Locator;
+  readonly toAccountSelect: Locator;
+  readonly transferAmountInput: Locator;
+  readonly executeTransferButton: Locator;
+  readonly transferSuccessMessage: Locator;
   readonly addBeneficiaryButton: Locator;
   readonly addBeneficiaryHeading: Locator;
   readonly beneficiaryNameInput: Locator;
@@ -20,6 +26,12 @@ export class FundsTransferComponent {
 
   constructor(page: Page) {
     this.transfersTab = page.locator("#tab-transfers");
+    this.transferTypeSelect = page.locator("#transfer-type");
+    this.fromAccountSelect = page.locator("#from-acc");
+    this.toAccountSelect = page.locator("#to-acc");
+    this.transferAmountInput = page.locator("#transfer-amount");
+    this.executeTransferButton = page.locator("#exec-transfer");
+    this.transferSuccessMessage = page.locator(".transfer-success-msg");
     this.addBeneficiaryButton = page.locator("#add-beneficiary");
     this.addBeneficiaryHeading = page.getByRole("heading", {
       name: "Add New Beneficiary",
@@ -38,9 +50,7 @@ export class FundsTransferComponent {
       name: "Edit Beneficiary Details",
     });
     this.editBeneficiaryNicknameInput = page.locator("#edit-bene-nickname");
-    this.saveBeneficiaryChangesButton = page.locator(
-      "#save-bene-changes",
-    );
+    this.saveBeneficiaryChangesButton = page.locator("#save-bene-changes");
     this.deletionDialogHeading = page.getByRole("heading", {
       name: "Confirm Beneficiary Deletion",
     });
@@ -49,6 +59,18 @@ export class FundsTransferComponent {
 
   async open(): Promise<void> {
     await this.transfersTab.click();
+  }
+
+  async executeInternalTransfer(
+    fromAccount: string,
+    toAccount: string,
+    amount: string,
+  ): Promise<void> {
+    await this.transferTypeSelect.selectOption("internal");
+    await this.fromAccountSelect.selectOption(fromAccount);
+    await this.toAccountSelect.selectOption(toAccount);
+    await this.transferAmountInput.fill(amount);
+    await this.executeTransferButton.click();
   }
 
   async openAddBeneficiaryForm(): Promise<void> {
