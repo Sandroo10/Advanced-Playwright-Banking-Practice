@@ -116,4 +116,24 @@ test.describe("Fund Transfer | BANK-TRSF", () => {
       }
     }
   });
+
+  test("BANK-TRSF-04: deletes a beneficiary", async ({ authenticatedPage }) => {
+    const transfer = authenticatedPage.fundsTransfer;
+    const beneficiary = createBeneficiaryData();
+
+    await transfer.open();
+    await transfer.openAddBeneficiaryForm();
+    await expect(transfer.addBeneficiaryHeading).toBeVisible();
+    await transfer.fillBeneficiary(beneficiary);
+
+    const createdBeneficiary = transfer.beneficiaryByName(beneficiary.name);
+
+    await transfer.saveBeneficiary();
+    await expect(createdBeneficiary).toBeVisible();
+
+    await transfer.deleteBeneficiary(beneficiary.name);
+    await expect(transfer.deletionDialogHeading).toBeVisible();
+    await transfer.confirmBeneficiaryDeletion();
+    await expect(createdBeneficiary).toHaveCount(0);
+  });
 });
